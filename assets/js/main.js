@@ -39,8 +39,6 @@ function init() {
 			windElement.textContent = `${data.wind.speed} km/h`
 			precElement.textContent = `${data.weather[0]['description']}`
 			iconElement.innerHTML = `<img src="http://openweathermap.org/img/wn/${data.weather[0]['icon']}@2x.png">`
-			console.log(iconElement)
-
 
 			function temperature() {
 				let getTemp = data.main.temp
