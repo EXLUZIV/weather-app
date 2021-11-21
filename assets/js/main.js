@@ -12,12 +12,31 @@ let serwer_date = document.querySelector('.serwer-time')
 let searchInp = document.querySelector('.search-city')
 let iconElement = document.querySelector('.imagineContent')
 
+let dateHours = 0;
+let dateMinutes = 0;
+let dateSeconds = 0;
 
 let city = 'Kyiv'
 
 setInterval(() => {
 	let date = new Date;
-	local_date.textContent = `Local time: ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
+	if (date.getHours() <= 9) {
+		dateHours = `0${date.getHours()}`
+	} else {
+		dateHours = date.getHours()
+	}
+	if (date.getMinutes() <= 9) {
+		dateMinutes = `0${date.getMinutes()}`
+	} else {
+		dateMinutes = date.getMinutes()
+	}
+	if (date.getSeconds() <= 9) {
+		dateSeconds = `0${date.getSeconds()}`
+	} else {
+		dateSeconds = date.getSeconds()
+	}
+	local_date.textContent = `Local time: ${dateHours}:${dateMinutes}:${dateSeconds}`
+	return dateHours, dateMinutes, dateSeconds
 }, 1000)
 
 document.addEventListener('keydown', (e) => {
@@ -47,7 +66,7 @@ function init() {
 			}
 
 			let date = new Date;
-			serwer_date.textContent = `Serwer time: ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
+			serwer_date.textContent = `Serwer time: ${dateHours}:${dateMinutes}:${dateSeconds}`
 
 			console.log('Restart')
 		})
