@@ -10,6 +10,7 @@ let precElement = document.querySelector('.precipitation')
 let local_date = document.querySelector('.local-time')
 let serwer_date = document.querySelector('.serwer-time')
 let searchInp = document.querySelector('.search-city')
+let iconElement = document.querySelector('.imagineContent')
 
 
 let city = 'Kyiv'
@@ -36,12 +37,14 @@ function init() {
 			tempElement.textContent = `${temperature()}°`
 			cityElement.textContent = `${data.name}`
 			windElement.textContent = `${data.wind.speed} km/h`
-			precElement.textContent = `${data.weather[0]['main']}`
+			precElement.textContent = `${data.weather[0]['description']}`
+			iconElement.innerHTML = `<img src="http://openweathermap.org/img/wn/${data.weather[0]['icon']}@2x.png">`
+			console.log(iconElement)
+
 
 			function temperature() {
 				let getTemp = data.main.temp
-				console.log(getTemp)
-				let tempC = Math.floor(getTemp) - 273
+				let tempC = Math.round(getTemp) - 273
 				return tempC
 			}
 

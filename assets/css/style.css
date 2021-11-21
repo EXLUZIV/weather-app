@@ -11,18 +11,21 @@ body {
 .main {
    text-align: center;
    align-items: center;
-   margin: 25vh 50vh 0vh 50vh;
+   margin: 25vh 50vh 0vh 30%;
 }
 
-.imagine-content {
-   width: 50%;
+.imagineContent {
+   width: 20%;
    background-color: rgb(130, 2, 161);
    float: left;
    height: 50vh;
 }
+.imagineContent img{
+	margin-top: 50%;
+}
 
 .information-content {
-   width: 50%;
+   width: 30%;
 	background-color: rgb(96, 0, 126);
    float: left;
    height: 50vh;
@@ -34,7 +37,7 @@ body {
 }
 
 .time {
-   height: 50%;
+   margin-top: 50px;
 }
 
 .weather p {
