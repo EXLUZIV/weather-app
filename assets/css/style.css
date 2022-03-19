@@ -24,7 +24,7 @@ body {
 	margin-top: 50%;
 }
 
-.information-content {
+.informationContent {
    width: 30%;
 	background-color: rgb(96, 0, 126);
    float: left;
@@ -50,7 +50,7 @@ body {
    text-align: center;
 }
 
-.search-city {
+.searchCity {
    display: block;
    width: 400px;
    border-radius: 50px;
@@ -61,6 +61,6 @@ body {
 	margin-left: auto;
    margin-right: auto;
 }
-.local-time{
+.localTime{
 	margin-top: 20px;
 }

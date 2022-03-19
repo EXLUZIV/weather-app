@@ -1,42 +1,41 @@
-// d8ab6fa7d8e546410b9e56232aa1a750- api keys
-
-// api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
-
 let tempElement = document.querySelector('.temparature')
 let cityElement = document.querySelector('.city')
-let imgElement = document.querySelector('.image-temperature')
 let windElement = document.querySelector('.wind')
 let precElement = document.querySelector('.precipitation')
-let local_date = document.querySelector('.local-time')
-let serwer_date = document.querySelector('.serwer-time')
-let searchInp = document.querySelector('.search-city')
+let localDate = document.querySelector('.localTime')
+let serwerDate = document.querySelector('.serwerTime')
+let searchInp = document.querySelector('.searchCity')
 let iconElement = document.querySelector('.imagineContent')
 
-let dateHours = 0;
-let dateMinutes = 0;
-let dateSeconds = 0;
+let dateHours = '00';
+let dateMinutes = '00';
+let dateSeconds = '00';
 
-let city = 'Kyiv'
+let city = 'London'
 
 setInterval(() => {
+	
 	let date = new Date;
 	if (date.getHours() <= 9) {
 		dateHours = `0${date.getHours()}`
 	} else {
 		dateHours = date.getHours()
 	}
+
 	if (date.getMinutes() <= 9) {
 		dateMinutes = `0${date.getMinutes()}`
 	} else {
 		dateMinutes = date.getMinutes()
 	}
+
 	if (date.getSeconds() <= 9) {
 		dateSeconds = `0${date.getSeconds()}`
 	} else {
 		dateSeconds = date.getSeconds()
 	}
-	local_date.textContent = `Local time: ${dateHours}:${dateMinutes}:${dateSeconds}`
-	return dateHours, dateMinutes, dateSeconds
+
+	localDate.textContent = `Local time: ${dateHours}:${dateMinutes}:${dateSeconds}`
+
 }, 1000)
 
 document.addEventListener('keydown', (e) => {
@@ -53,6 +52,7 @@ function init() {
 	fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=d8ab6fa7d8e546410b9e56232aa1a750`)
 		.then(resp => { return resp.json() })
 		.then(data => {
+
 			tempElement.textContent = `${temperature()}°`
 			cityElement.textContent = `${data.name}`
 			windElement.textContent = `${data.wind.speed} km/h`
@@ -60,20 +60,22 @@ function init() {
 			iconElement.innerHTML = `<img src="http://openweathermap.org/img/wn/${data.weather[0]['icon']}@2x.png">`
 
 			function temperature() {
+
 				let getTemp = data.main.temp
 				let tempC = Math.round(getTemp) - 273
 				return tempC
 			}
 
-			let date = new Date;
-			serwer_date.textContent = `Serwer time: ${dateHours}:${dateMinutes}:${dateSeconds}`
+			serwerDate.textContent = `Serwer time: ${dateHours}:${dateMinutes}:${dateSeconds}`
 
-			console.log('Restart')
 		})
+
 		.catch(() => {
+		
 			alert(`This city doesn't exist`)
-			city = 'Kyiv'
+			city = 'London'
 			init()
+		
 		})
 }
 
@@ -81,4 +83,5 @@ init()
 
 setInterval(() => {
 	init()
+
 }, 10000)
